@@ -8,16 +8,20 @@ namespace CoinFlipper
     {
         public override string Name { get; } = "CoinFlipper";
         public override string Author { get; } = "Z1her";
-        public override Version Version { get; } =  new Version(1, 0, 0);
+        public override Version Version { get; } =  new Version(1, 1, 1);
+        
+        public static Config Cfg { get; private set; }       
         
         public override void OnEnabled()
         {
+            Cfg = Config;
             PlayerEv.FlippingCoin += Handler.OnFlippingCoin;
             base.OnEnabled();
         }
 
         public override void OnDisabled()
         {
+            Cfg = null;
             PlayerEv.FlippingCoin -= Handler.OnFlippingCoin;
             base.OnDisabled();
         }
